@@ -9,6 +9,7 @@ import ProductItems from "./Components/ProductItems.tsx/ProductItems";
 import BaseLayout from "./layouts/BaseLayout";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutPage from "./pages/About";
+import User from "./Components/User";
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<BaseLayout />}>
           <Route index path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/user" element={<User />} />
         </Route>
       </Routes>
     </>

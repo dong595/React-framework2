@@ -237,6 +237,25 @@
       "price": "179",
       "description": "descripton",
       "id": 97
+    },
+    {
+      "name": "do thi luong",
+      "imgUrl": "https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/377951193_1458491264942396_4953580290102308139_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Kuz4z3yFSvgAX89rUPI&_nc_ht=scontent.fhan14-2.fna&oh=00_AfBBfjnurmg6GH6ltYbNUdv9aO_UT6XvJMycCzZ21XlphA&oe=65696C22",
+      "price": "9999999999999999999999999999999999999999999999999999999999999999",
+      "description": "anh yeu em be <3",
+      "id": 98
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$dTWfnSAFFv5i19EmhQ9Tw.DtlaCG1w0XhsN/QpTuzm54qbctjxCvu",
+      "id": 1
+    },
+    {
+      "email": "admin1@gmail.com",
+      "password": "$2a$10$GPIICeF5DD0Q0WBXm5MG1uYYWVb6Lfs3AP2wX3zufuGH4BFMmPlHS",
+      "id": 2
     }
   ]
 }

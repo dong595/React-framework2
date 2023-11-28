@@ -1,3 +1,9 @@
+import Banner from "@/Components/Banner";
+
 export default function AboutPage() {
-  return <div>AboutPage</div>;
+  return (
+    <div>
+      <Banner /> AboutPage
+    </div>
+  );
 }
