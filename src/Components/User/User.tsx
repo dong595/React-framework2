@@ -28,8 +28,9 @@ export default function User(): JSX.Element {
       }
     },
     {
-      onSuccess: () => {
+      onSuccess: (data: IUser) => {
         queryClient.invalidateQueries(["USER"]);
+        localStorage.setItem("user", JSON.stringify(data));
       },
     }
   );

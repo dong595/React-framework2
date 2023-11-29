@@ -6,12 +6,14 @@ interface Props {
 }
 export const BaseLayout = ({ children }: Props) => {
   return (
-    <div className="container w-full mx-auto">
+    <>
       <Header />
-      <main className="h-screen">
-        {children} <Outlet />
-      </main>
-      <Footer />
-    </div>
+      <div className="container w-full mx-auto">
+        <main className="h-screen">
+          {children} <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };

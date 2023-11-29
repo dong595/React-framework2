@@ -256,6 +256,11 @@
       "email": "admin1@gmail.com",
       "password": "$2a$10$GPIICeF5DD0Q0WBXm5MG1uYYWVb6Lfs3AP2wX3zufuGH4BFMmPlHS",
       "id": 2
+    },
+    {
+      "email": "admin3@gmail.com",
+      "password": "$2a$10$e5x4fQjQvuYFO95jiheuAOUBgV9gZW2Rd2F98EVe8zM.S3ynUtHeq",
+      "id": 3
     }
   ]
 }

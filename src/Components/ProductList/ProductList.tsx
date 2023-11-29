@@ -46,51 +46,65 @@ const ProductList = () => {
           <MdOutlineAddToPhotos />{" "}
         </Button>
       </Link>
-      <table className="w-full border text-center mt-2">
-        <thead>
+      <table className="min-w-full  text-sm font-light text-center">
+        <thead className="border-b font-medium dark:border-neutral-500">
           <tr>
-            <th className=" border px-4 py-2 ">
+            <th scope="col" className="px-6 py-4 text-center uppercase">
               {" "}
               <input type="checkbox" name="" id="" />
             </th>
-            <th className=" border px-4 py-2 uppercase font-medium ">name</th>
-            <th className=" border px-4 py-2 uppercase font-medium ">image</th>
-            <th className=" border px-4 py-2 uppercase font-medium ">price</th>
-            <th className=" border px-4 py-2 uppercase font-medium ">
+            <th scope="col" className="px-6 py-4 text-center uppercase">
+              name
+            </th>
+            <th scope="col" className="px-6 py-4 text-center uppercase">
+              image
+            </th>
+            <th scope="col" className="px-6 py-4 text-center uppercase">
+              price
+            </th>
+            <th scope="col" className="px-6 py-4 text-center uppercase">
               description
             </th>
-            <th className=" border px-4 py-2 uppercase font-medium ">action</th>
+            <th scope="col" className="px-6 py-4 text-center uppercase">
+              action
+            </th>
           </tr>
         </thead>
         <tbody>
           {query.data?.map((product: IProduct, index: number) => {
             return (
-              <tr className="border" key={product.id}>
-                <td className=" border px-6 py-2 ">{index + 1}</td>
-                <td className=" border px-6 py-2 ">{product.name}</td>
-                <td className=" border px-6 py-2 text-center ">
+              <tr className="border-b dark:border-neutral-500" key={product.id}>
+                <td className="whitespace-nowrap px-6 py-4 font-medium">
+                  {index + 1}
+                </td>
+                <td className="whitespace-nowrap px-6 py-4">{product.name}</td>
+                <td className=" whitespace-nowrap px-6 py-4 text-center ">
                   <img
                     className="w-[250px] mx-auto h-[250px] "
                     src={product.imgUrl}
                     alt={product.name}
                   />
                 </td>
-                <td className=" border px-6 py-2 ">{product.price}</td>
-                <td className=" border px-6 py-2 ">
-                  <p className="truncate w-72">{product.description}</p>
+                <td className=" whitespace-nowrap px-6 py-4 ">
+                  <p className="truncate w-28 mx-auto ">{product.price}</p>
                 </td>
-                <td className="flex items-center justify-center gap-2 h-96">
-                  <Link to={`/admin/products/${product.id}/edit`}>
-                    <Button className="hover:bg-green-500">
-                      <FaRegPenToSquare />
+                <td className="whitespace-nowrap px-6 py-4">
+                  <p className="truncate w-72 mx-auto">{product.description}</p>
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 ">
+                  <div className="flex items-center justify-center gap-2">
+                    <Link to={`/admin/products/${product.id}/edit`}>
+                      <Button className="hover:bg-green-500">
+                        <FaRegPenToSquare />
+                      </Button>
+                    </Link>
+                    <Button
+                      className="hover:bg-red-500"
+                      onClick={() => hanldeRemove(product)}
+                    >
+                      <FaRegTrashAlt />{" "}
                     </Button>
-                  </Link>
-                  <Button
-                    className="hover:bg-red-500"
-                    onClick={() => hanldeRemove(product)}
-                  >
-                    <FaRegTrashAlt />{" "}
-                  </Button>
+                  </div>
                 </td>
               </tr>
             );
