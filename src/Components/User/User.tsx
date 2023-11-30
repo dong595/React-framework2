@@ -2,7 +2,7 @@ import { signin, signup } from "@/apis/user";
 import { IUser } from "@/interfaces/user";
 import { ErrorMessage } from "@hookform/error-message";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { QueryClient, useMutation, useQuery } from "react-query";
 import { TERipple } from "tw-elements-react";
 import { toast } from "react-toastify";
@@ -37,7 +37,7 @@ export default function User(): JSX.Element {
   const handleCheck = () => {
     setIsActive(!isActive);
   };
-  const onSubmit = (user: IUser) => {
+  const onSubmit: SubmitHandler<IUser> = (user: IUser) => {
     toast(`${!isActive ? "login success" : "register suscces"} !`, {
       position: "bottom-right",
       autoClose: 5000,
