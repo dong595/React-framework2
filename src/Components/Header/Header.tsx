@@ -79,7 +79,7 @@ const Header = () => {
               alt="Flowbite Logo"
             />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 w-[300px]">
             <button
               type="button"
               data-collapse-toggle="navbar-search"

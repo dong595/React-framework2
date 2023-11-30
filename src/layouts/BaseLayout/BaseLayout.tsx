@@ -8,12 +8,12 @@ export const BaseLayout = ({ children }: Props) => {
   return (
     <>
       <Header />
-      <div className="container w-full mx-auto">
-        <main className="h-screen">
+      <div className="container w-full mx-auto ">
+        <main className="flex flex-col">
           {children} <Outlet />
         </main>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };
