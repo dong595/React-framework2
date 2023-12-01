@@ -36,10 +36,7 @@ const HomePage = () => {
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {query.data?.data.map((product: IProduct) => {
               return (
-                <Link
-                  to={`http://localhost:5173/products/${product.id}`}
-                  key={product.id}
-                >
+                <Link to={`/products/${product.id}`} key={product.id}>
                   <section className="mx-auto w-fit p-12">
                     {/* Card */}
                     <div className="w-72 h-fit group">
