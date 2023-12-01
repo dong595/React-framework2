@@ -1,10 +1,16 @@
 import { IProduct } from "@/interfaces/product";
 import instance from "./instance";
 
-export const getProducts = async () => {
+export const getProducts = async (
+  page: number | string,
+  limit: number | string
+) => {
   try {
-    const response = await instance.get("/products");
-    return response.data;
+    const response = await instance.get("/products", {
+      params: { _page: page, _limit: limit },
+    });
+    const totalCount = response.headers["x-total-count"];
+    return { data: response.data, totalCount };
   } catch (error) {
     console.log(`['FETCH_PRODUCTS_ERROR']`, error);
   }

@@ -1,13 +1,19 @@
 import Banner from "@/Components/Banner";
 import { getProducts } from "@/apis/product";
 import { IProduct } from "@/interfaces/product";
+import { useQueryString } from "@/utils/utils";
+import classNames from "classnames";
+import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+const LIMIT = 4;
 
 const HomePage = () => {
+  const queryString: { page?: string } = useQueryString();
+  const page = Number(queryString.page) || 1;
   const query = useQuery({
-    queryKey: ["PRODUCTS"],
-    queryFn: () => getProducts(),
+    queryKey: ["PRODUCTS", page],
+    queryFn: () => getProducts(page, LIMIT),
 
     onSuccess: () => {
       console.log("success");
@@ -16,6 +22,8 @@ const HomePage = () => {
       console.log(error);
     },
   });
+  const totalProductsCount = Number(query.data?.totalCount || 0);
+  const totalPage = Math.ceil(totalProductsCount / LIMIT);
   return (
     <div className=" flex flex-col">
       <Banner />{" "}
@@ -25,7 +33,7 @@ const HomePage = () => {
             Customers also purchased
           </h2>
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {query.data?.map((product: IProduct) => {
+            {query.data?.data.map((product: IProduct) => {
               return (
                 <div className="group relative" key={product.id}>
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
@@ -55,8 +63,48 @@ const HomePage = () => {
                 </div>
               );
             })}
+          </div>
+          <div className="flex items-center gap-2 mt-4 mb-4">
+            {page === 1 ? (
+              <span>
+                <GrCaretPrevious />
+              </span>
+            ) : (
+              <Link to={`http://localhost:5173/?page=${page - 1}`}>
+                <GrCaretPrevious />
+              </Link>
+            )}
+            {Array(totalPage)
+              .fill(0)
+              .map((_, index) => {
+                const pageNumber = index + 1;
+                const isActive = page === pageNumber;
+                return (
+                  <li key={index} className="list-none">
+                    <Link
+                      to={`http://localhost:5173/?page=${pageNumber}`}
+                      className={classNames(
+                        "border bg-gray-300 hover:bg-gray-500 px-2 py-1 ",
+                        {
+                          "bg-gray-500 text-white": isActive,
+                        }
+                      )}
+                    >
+                      {pageNumber}
+                    </Link>
+                  </li>
+                );
+              })}
 
-            {/* More products... */}
+            {page === totalPage ? (
+              <span>
+                <GrCaretNext />
+              </span>
+            ) : (
+              <Link to={`http://localhost:5173/?page=${page + 1}`}>
+                <GrCaretNext />
+              </Link>
+            )}
           </div>
         </div>
       </div>

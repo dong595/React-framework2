@@ -10,6 +10,7 @@ import BaseLayout from "./layouts/BaseLayout";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutPage from "./pages/About";
 import User from "./Components/User";
+import Details from "./pages/Details";
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
         </Route>
         <Route path="/" element={<BaseLayout />}>
           <Route index path="/" element={<HomePage />} />
+          <Route path="/products/:id" element={<Details />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/user" element={<User />} />
         </Route>

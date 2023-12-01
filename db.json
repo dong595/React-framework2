@@ -237,13 +237,6 @@
       "price": "179",
       "description": "descripton",
       "id": 97
-    },
-    {
-      "name": "Do Thi Luong",
-      "imgUrl": "https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/377951193_1458491264942396_4953580290102308139_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=Kuz4z3yFSvgAX9P9F42&_nc_ht=scontent.fhan14-2.fna&oh=00_AfCu32FWmFMXQ8mSqIDhvGElSQGIqrd6tQvlDBfWW4jqfw&oe=656B6662",
-      "price": "999999999999999999999999999999999999999999",
-      "description": "luong an cut",
-      "id": 98
     }
   ],
   "users": [
@@ -261,6 +254,11 @@
       "email": "admin3@gmail.com",
       "password": "$2a$10$e5x4fQjQvuYFO95jiheuAOUBgV9gZW2Rd2F98EVe8zM.S3ynUtHeq",
       "id": 3
+    },
+    {
+      "email": "dongnv280203@gmail.com",
+      "password": "$2a$10$7NvUGeyH8fzhmELfL0vmsOJAZCx5uS3r0zu5Jvv8omFRStzvb/Gba",
+      "id": 4
     }
   ]
 }
