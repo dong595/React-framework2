@@ -77,7 +77,7 @@ const HomePage = () => {
                 <GrCaretPrevious />
               </span>
             ) : (
-              <Link to={`http://localhost:5173/?page=${page - 1}`}>
+              <Link to={`/?page=${page - 1}`}>
                 <GrCaretPrevious />
               </Link>
             )}
@@ -89,7 +89,7 @@ const HomePage = () => {
                 return (
                   <li key={index} className="list-none">
                     <Link
-                      to={`http://localhost:5173/?page=${pageNumber}`}
+                      to={`/?page=${pageNumber}`}
                       className={classNames(
                         "border bg-gray-300 hover:bg-gray-500 px-2 py-1 ",
                         {
@@ -108,7 +108,7 @@ const HomePage = () => {
                 <GrCaretNext />
               </span>
             ) : (
-              <Link to={`http://localhost:5173/?page=${page + 1}`}>
+              <Link to={`/?page=${page + 1}`}>
                 <GrCaretNext />
               </Link>
             )}
