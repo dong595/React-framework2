@@ -3,6 +3,7 @@ import { getProducts } from "@/apis/product";
 import { IProduct } from "@/interfaces/product";
 import { useQueryString } from "@/utils/utils";
 import classNames from "classnames";
+import { FaCartPlus, FaHeart } from "react-icons/fa6";
 import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
@@ -29,7 +30,7 @@ const HomePage = () => {
       <Banner />{" "}
       <div className="bg-white ">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          <h2 className="mb-2 mt-0 text-4xl font-medium leading-tight text-primary">
             Customers also purchased
           </h2>
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -39,37 +40,38 @@ const HomePage = () => {
                   to={`http://localhost:5173/products/${product.id}`}
                   key={product.id}
                 >
-                  <div className="group relative">
-                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                      <img
-                        src={product.imgUrl}
-                        alt="Front of men's Basic Tee in black."
-                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                      />
-                    </div>
-                    <div className="mt-4 flex justify-between">
-                      <div>
-                        <h3 className="text-sm text-gray-700">
-                          <p>
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            />
-                            {product.name}
-                          </p>
-                        </h3>
-                        <p className="mt-1 text-sm text-gray-500">Black</p>
+                  <section className="mx-auto w-fit p-12">
+                    {/* Card */}
+                    <div className="w-72 h-fit group">
+                      <div className="relative overflow-hidden">
+                        <img
+                          className="h-96 w-full rounded object-cover"
+                          src={product.imgUrl}
+                          alt=""
+                        />
+                        <div className="absolute h-full w-full bg-white/20 text-2xl flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <button className="bg-black/50 text-white py-2 px-5 hover:text-red-500">
+                            <FaCartPlus />
+                          </button>
+                          <button className="bg-black/50 text-white py-2 px-5 hover:text-red-500">
+                            <FaHeart />
+                          </button>
+                        </div>
                       </div>
-                      <p className="text-sm font-medium text-gray-900">
+                      <h2 className="mt-3 text-xl capitalize">
+                        {product.name}
+                      </h2>
+                      <del className="text-red-700 text-lg">
                         $ {product.price}
-                      </p>
+                      </del>
+                      <p className="text-xl mt-2 ml-1 inline-block">$35</p>
                     </div>
-                  </div>
+                  </section>
                 </Link>
               );
             })}
           </div>
-          <div className="flex items-center gap-2 mt-4 mb-4">
+          <div className="flex items-center gap-1 mt-4 mb-4 justify-start">
             {page === 1 ? (
               <span>
                 <GrCaretPrevious />

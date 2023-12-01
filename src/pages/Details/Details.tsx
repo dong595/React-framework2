@@ -89,10 +89,10 @@ export default function Details() {
                 $ {data.price}
               </span>
               <button className="flex items-center ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-                <FaCartPlus className="flex items-center" />
+                <FaCartPlus className="flex text-xl items-center" />
               </button>
               <button className="rounded-full hover:text-pink-500 hover:bg-pink-300 w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                <FaHeart />
+                <FaHeart className="flex text-xl items-center" />
               </button>
             </div>
           </div>
