@@ -95,7 +95,7 @@ export default function User(): JSX.Element {
                               errors.email
                                 ? "border-red-500 bg-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                                 : "border-black-500 bg-black-50 text-black-900 placeholder-black-700 text-sm rounded-lg focus:ring-black-500 focus:border-black-500"
-                            } block w-full p-2.5 py-4`}
+                            } block w-full p-2.5`}
                             placeholder="Email address"
                           />
                           <ErrorMessage
@@ -159,7 +159,7 @@ export default function User(): JSX.Element {
                               errors.email
                                 ? "border-red-500 bg-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500"
                                 : "border-black-500 bg-black-50 text-black-900 placeholder-black-700 text-sm rounded-lg focus:ring-black-500 focus:border-black-500"
-                            } block w-full p-2.5 py-4`}
+                            } block w-full p-2.5 `}
                             placeholder="Email address"
                           />
                           <ErrorMessage

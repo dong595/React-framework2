@@ -1,0 +1,8 @@
+.scr::-webkit-scrollbar {
+  width: 0.5em; /* Đặt chiều rộng của thanh cuộn */
+  background-color: transparent; /* Đặt màu nền của thanh cuộn */
+}
+
+.scr::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Đặt màu của "nút" thanh cuộn */
+}

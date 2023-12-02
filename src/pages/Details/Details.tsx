@@ -4,9 +4,9 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { CiFacebook, CiStar } from "react-icons/ci";
 import { IoIosChatbubbles } from "react-icons/io";
+import { IProduct } from "@/interfaces/product";
 export default function Details() {
   const { id } = useParams(); // Đảm bảo rằng id được truyền vào đúng dạng
-  console.log(id);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["PRODUCT", id],
     queryFn: () => getProduct(id as unknown as number),
@@ -14,6 +14,9 @@ export default function Details() {
   });
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
+  const handleAddToCart = (product: IProduct) => {
+    localStorage.setItem("product", JSON.stringify(product));
+  };
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 pt-2 pb-4 mx-auto">
@@ -88,7 +91,11 @@ export default function Details() {
               <span className="title-font font-medium text-2xl text-gray-900">
                 $ {data.price}
               </span>
-              <button className="flex items-center ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+              <button
+                onClick={() => handleAddToCart(data)}
+                type="button"
+                className="flex items-center ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+              >
                 <FaCartPlus className="flex text-xl items-center" />
               </button>
               <button className="rounded-full hover:text-pink-500 hover:bg-pink-300 w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">

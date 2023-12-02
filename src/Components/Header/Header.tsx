@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
-// import { useState } from "react";
+import { GoPlus } from "react-icons/go";
+import { LuMinus } from "react-icons/lu";
+import { IProduct } from "@/interfaces/product";
+import { IoSearchOutline } from "react-icons/io5";
+import { FaBars } from "react-icons/fa6";
+import "./header.css";
 const Header = () => {
-  // const [products, setProducts] = useState([]);
   const storedUserString = localStorage.getItem("user");
   const storedUser =
     storedUserString !== null ? JSON.parse(storedUserString) : null;
+  const storedProductString = localStorage.getItem("product");
+  const storedProduct =
+    storedProductString !== null ? JSON.parse(storedProductString) : null;
 
   return (
     <>
@@ -18,26 +25,12 @@ const Header = () => {
           >
             <div className="relative mt-3 md:hidden">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg
-                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
+                <IoSearchOutline className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               </div>
               <input
                 type="text"
                 id="search-navbar"
-                className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
                 placeholder="Search..."
               />
             </div>
@@ -69,17 +62,7 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <Link
-            to="http://localhost:5173/"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <img
-              src="https://auteur.g5plus.net/main/wp-content/uploads/2018/11/logo-dark.png"
-              className="h-8"
-              alt="Flowbite Logo"
-            />
-          </Link>
-          <div className="flex items-center gap-4 w-[300px]">
+          <div className="md:hidden">
             <button
               type="button"
               data-collapse-toggle="navbar-search"
@@ -87,49 +70,10 @@ const Header = () => {
               aria-expanded="false"
               className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
             >
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
+              <IoSearchOutline className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+
               <span className="sr-only">Search</span>
             </button>
-            <div className="relative hidden md:block">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg
-                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-                <span className="sr-only">Search icon</span>
-              </div>
-              <input
-                type="text"
-                id="search-navbar"
-                className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search..."
-              />
-            </div>
             <button
               data-collapse-toggle="navbar-search"
               type="button"
@@ -138,39 +82,112 @@ const Header = () => {
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
+              <FaBars className="w-5 h-5" />
             </button>
-            <div className="relative w-9 h-11 my-auto flex items-center group">
+          </div>
+          <Link
+            to="/"
+            className=" md:flex items-center space-x-3 rtl:space-x-reverse"
+          >
+            <img
+              src="https://auteur.g5plus.net/main/wp-content/uploads/2018/11/logo-dark.png"
+              className="h-8"
+              alt="Flowbite Logo"
+            />
+          </Link>
+          <div className="flex items-center gap-4 md:w-[300px]">
+            <div className="relative hidden md:block">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <IoSearchOutline className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                <span className="sr-only">Search icon</span>
+              </div>
+              <input
+                type="text"
+                id="search-navbar"
+                className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+                placeholder="Search..."
+              />
+            </div>
+
+            <div className="relative w-9 h-11 my-auto flex items-center group rounded">
               <Link to="/cart" className="relative">
                 <BsCart3 className="text-[1.5rem] transition duration-300 ease-in-out transform hover:scale-110" />
                 <span className="text-white bg-orange-400 rounded-full w-6 h-6 text-center absolute -right-5 -top-3 transition duration-300 ease-in-out">
-                  0
+                  {storedProduct ? storedProduct.length : "0"}
                 </span>
               </Link>
-              <div className="hidden w-72 h-32 z-10 bg-slate-50 group-hover:flex items-center justify-center absolute right-0 top-11 transition duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0">
-                <h3 className=" ">No products in the cart.</h3>
+              <div className="hidden w-96  z-10 bg-slate-50 md:group-hover:block  absolute left-0 top-11 transition duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0">
+                {storedProduct ? (
+                  <div className="container mx-auto mt-2">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+                      <h1 className="text-xl font-bold my-1">Shopping Cart</h1>
+                      <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 text-sm rounded">
+                        Checkout
+                      </button>
+                    </div>
+                    <div className="overflow-auto scr max-h-72 mt-4">
+                      {storedProduct?.map((product: IProduct) => (
+                        <Link to={`/products/${product.id}`} key={product.id}>
+                          <div className="mt-1">
+                            <div className="flex border-b border-gray-400 py-4">
+                              <div className="flex-shrink-0">
+                                <img
+                                  src={product.imgUrl}
+                                  alt="Product image"
+                                  className="w-20 h-20 object-cover"
+                                />
+                              </div>
+                              <div className="mt-4 md:mt-0">
+                                <h2 className="text-lg font-bold w-full">
+                                  {product.name}
+                                </h2>
+                                <div className="mt-4 flex items-center justify-between w-full">
+                                  <div className="flex items-center">
+                                    <span className="mr-2 text-gray-600">
+                                      Quantity:
+                                    </span>
+                                    <button>
+                                      <LuMinus />
+                                    </button>
+                                    <span className="mx-2 text-gray-600">
+                                      1
+                                    </span>
+                                    <button>
+                                      <GoPlus />
+                                    </button>
+                                  </div>
+                                  <span className="ml-auto font-bold">
+                                    $ {product.price}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="flex justify-end items-center mt-8">
+                      <span className="text-gray-600 mr-4">Subtotal:</span>
+                      <span className="text-xl font-bold">$35.00</span>
+                    </div>
+                  </div>
+                ) : (
+                  <h3 className="flex self-center justify-center">
+                    No products in the cart.
+                    <p></p>
+                  </h3>
+                )}
               </div>
             </div>
-            <Link to="/user" className="truncate w-28">
+            <Link to="/user" className="hidden md:block truncate w-28">
               {storedUser ? (
                 `Hello ${storedUser.user.email}`
               ) : (
                 <FaRegUser className="text-[1.5rem] " />
               )}
+            </Link>
+            <Link to="/user" className="block md:hidden ">
+              <FaRegUser className="text-[1.5rem] " />
             </Link>
           </div>
         </div>
