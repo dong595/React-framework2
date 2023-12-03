@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaUserCog } from "react-icons/fa";
 import { GoPlus } from "react-icons/go";
-import { LuMinus } from "react-icons/lu";
+import { LuLayoutDashboard, LuMinus } from "react-icons/lu";
 import { IProduct } from "@/interfaces/product";
 import { IoSearchOutline } from "react-icons/io5";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaUserPlus } from "react-icons/fa6";
 import "./header.css";
+import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
 const Header = () => {
   const storedUserString = localStorage.getItem("user");
   const storedUser =
@@ -14,7 +15,10 @@ const Header = () => {
   const storedProductString = localStorage.getItem("product");
   const storedProduct =
     storedProductString !== null ? JSON.parse(storedProductString) : null;
-
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    location.reload();
+  };
   return (
     <>
       <nav className="bg-white border-gray-200  dark:bg-gray-900">
@@ -97,7 +101,7 @@ const Header = () => {
           </Link>
           <div className="flex items-center gap-4 md:w-[300px]">
             <div className="relative hidden md:block">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none w-10">
                 <IoSearchOutline className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                 <span className="sr-only">Search icon</span>
               </div>
@@ -179,13 +183,61 @@ const Header = () => {
                 )}
               </div>
             </div>
-            <Link to="/user" className="hidden md:block truncate w-28">
+            <div className="group relative">
+              <Link to="/user" className="hidden md:block truncate w-28">
+                {storedUser ? (
+                  `Hello ${storedUser.user.email}`
+                ) : (
+                  <FaRegUser className="text-[1.5rem] " />
+                )}
+              </Link>
               {storedUser ? (
-                `Hello ${storedUser.user.email}`
+                <div className="hidden group-hover:block  absolute left-0 w-60 z-10 bg-slate-50">
+                  <div className="flex flex-col items-center w-full">
+                    <Link
+                      to="/admin/dashboard"
+                      className="flex items-center gap-2 py-2 px-2 hover:bg-slate-300 w-full"
+                    >
+                      <LuLayoutDashboard />
+                      Go to dashboard
+                    </Link>
+                    <Link
+                      to="/user"
+                      className="flex items-center gap-2 py-2 px-2 hover:bg-slate-300 w-full"
+                    >
+                      <FaUserCog />
+                      Info
+                    </Link>
+                    <button
+                      onClick={handleLogOut}
+                      className="flex items-center gap-2 py-2 px-2 hover:bg-slate-300 w-full"
+                    >
+                      <IoIosLogOut />
+                      Logout
+                    </button>
+                  </div>
+                </div>
               ) : (
-                <FaRegUser className="text-[1.5rem] " />
+                <div className="hidden group-hover:block absolute left-0 w-60 z-10 bg-slate-50">
+                  <div className="flex flex-col items-center w-full">
+                    <Link
+                      to="/user"
+                      className="flex items-center gap-2 py-2 px-2 hover:bg-slate-300 w-full"
+                    >
+                      <IoIosLogIn />
+                      Login
+                    </Link>
+                    <Link
+                      to="/user"
+                      className="flex items-center gap-2 py-2 px-2 hover:bg-slate-300 w-full"
+                    >
+                      <FaUserPlus />
+                      Register
+                    </Link>
+                  </div>
+                </div>
               )}
-            </Link>
+            </div>
             <Link to="/user" className="block md:hidden ">
               <FaRegUser className="text-[1.5rem] " />
             </Link>

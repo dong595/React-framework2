@@ -23,6 +23,7 @@ const HomePage = () => {
       console.log(error);
     },
   });
+
   const handleAddToCart = (product: IProduct) => {
     let products = [];
     const existingData = localStorage.getItem("product");

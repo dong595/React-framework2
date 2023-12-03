@@ -49,6 +49,9 @@ export default function User(): JSX.Element {
       theme: "light",
     });
     mutation.mutate(user);
+    setTimeout(() => {
+      location.reload();
+    }, 3000);
   };
   if (isLoading) <div>loading...</div>;
   if (isError) <div>erorr...</div>;

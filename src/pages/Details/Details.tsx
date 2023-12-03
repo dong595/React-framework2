@@ -15,7 +15,13 @@ export default function Details() {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
   const handleAddToCart = (product: IProduct) => {
-    localStorage.setItem("product", JSON.stringify(product));
+    let products = [];
+    const existingData = localStorage.getItem("product");
+    if (existingData) {
+      products = JSON.parse(existingData);
+    }
+    products.push(product);
+    localStorage.setItem("product", JSON.stringify(products));
   };
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
