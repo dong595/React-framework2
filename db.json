@@ -266,6 +266,11 @@
       "email": "dongnv280203@gmail.com",
       "password": "$2a$10$7NvUGeyH8fzhmELfL0vmsOJAZCx5uS3r0zu5Jvv8omFRStzvb/Gba",
       "id": 4
+    },
+    {
+      "email": "dongnvph28919@fpt.edu.vn",
+      "password": "$2a$10$6XAK9F6Si8vwl1YKzdC23OV.98S1PumT9h9HKCrc72xVcsWuo3V/S",
+      "id": 5
     }
   ]
 }

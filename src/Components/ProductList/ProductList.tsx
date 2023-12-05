@@ -7,9 +7,12 @@ import { Button } from "../ui/button";
 import { toast } from "react-toastify";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { MdOutlineAddToPhotos } from "react-icons/md";
+import {
+  MdNavigateBefore,
+  MdNavigateNext,
+  MdOutlineAddToPhotos,
+} from "react-icons/md";
 import { useQueryString } from "@/utils/utils";
-import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 import classNames from "classnames";
 const LIMIT = 4;
 const ProductList = () => {
@@ -49,18 +52,18 @@ const ProductList = () => {
   return (
     <>
       <Link className="w-12 ml-2" to={`/admin/products/add`}>
-        <Button className="hover:bg-blue-500">
-          <MdOutlineAddToPhotos />{" "}
+        <Button className="hover:bg-blue-500 gap-2 flex items-center">
+          <MdOutlineAddToPhotos /> Add product
         </Button>
       </Link>
       <div className="flex items-center gap-2 mt-4 mb-4">
         {page === 1 ? (
           <span>
-            <GrCaretPrevious />
+            <MdNavigateBefore className="text-2xl" />
           </span>
         ) : (
           <Link to={`/admin/products?page=${page - 1}`}>
-            <GrCaretPrevious />
+            <MdNavigateBefore className="text-2xl" />
           </Link>
         )}
         {Array(totalPage)
@@ -73,7 +76,7 @@ const ProductList = () => {
                 <Link
                   to={`/admin/products?page=${pageNumber}`}
                   className={classNames(
-                    "border bg-gray-300 hover:bg-gray-500 px-2 py-1 ",
+                    " hover:bg-gray-500 px-2 py-1 hover:text-white",
                     {
                       "bg-gray-500 text-white": isActive,
                     }
@@ -87,11 +90,11 @@ const ProductList = () => {
 
         {page === totalPage ? (
           <span>
-            <GrCaretNext />
+            <MdNavigateNext className="text-2xl" />
           </span>
         ) : (
           <Link to={`/admin/products?page=${page + 1}`}>
-            <GrCaretNext />
+            <MdNavigateNext className="text-2xl" />
           </Link>
         )}
       </div>

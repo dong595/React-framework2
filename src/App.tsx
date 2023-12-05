@@ -20,7 +20,10 @@ function App() {
           <Route path="/admin/products" element={<ProductItems />}>
             <Route index path="/admin/products" element={<ProductList />} />
             <Route path="/admin/products/add" element={<AddProduct />} />
-            <Route path="/admin/products/:id/edit" element={<Editproduct />} />
+            <Route
+              path="/admin/products/api/product/get-details/:id"
+              element={<Editproduct />}
+            />
           </Route>
         </Route>
         <Route path="/" element={<BaseLayout />}>

@@ -83,7 +83,7 @@ const HomePage = () => {
               );
             })}
           </div>
-          <div className="flex items-center justify-center md:justify-start gap-1 mt-8 md:mt-4 mb-4 ">
+          <div className="flex items-center justify-center md:justify-start gap-1 mt-8 md:mt-8 mb-4 ">
             {page === 1 ? (
               <span>
                 <MdNavigateBefore className="text-2xl" />
@@ -102,12 +102,9 @@ const HomePage = () => {
                   <li key={index} className="list-none">
                     <Link
                       to={`/?page=${pageNumber}`}
-                      className={classNames(
-                        "border bg-gray-300 hover:bg-gray-500 px-2 py-1 ",
-                        {
-                          "bg-gray-500 text-white": isActive,
-                        }
-                      )}
+                      className={classNames("hover:bg-gray-500 px-2 py-1 ", {
+                        "bg-gray-500 text-white": isActive,
+                      })}
                     >
                       {pageNumber}
                     </Link>

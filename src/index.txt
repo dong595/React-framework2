@@ -1,0 +1,31 @@
+{Array(totalPage)
+          .fill(0)
+          .map((_, index) => {
+            const pageNumber = index + 1;
+            const isActive = page === pageNumber;
+            return (
+              <li key={index} className="list-none">
+                <Link
+                  to={`/admin/products?page=${pageNumber}`}
+                  className={classNames(
+                    " hover:bg-gray-500 px-2 py-1 hover:text-white",
+                    {
+                      "bg-gray-500 text-white": isActive,
+                    }
+                  )}
+                >
+                  {pageNumber}
+                </Link>
+              </li>
+            );
+          })}
+
+        {page === totalPage ? (
+          <span>
+            <MdNavigateNext className="text-2xl" />
+          </span>
+        ) : (
+          <Link to={`/admin/products?page=${page + 1}`}>
+            <MdNavigateNext className="text-2xl" />
+          </Link>
+        )}

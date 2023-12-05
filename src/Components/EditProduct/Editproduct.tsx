@@ -10,7 +10,6 @@ import { useEffect } from "react";
 
 const EditProduct = () => {
   const { id } = useParams(); // Đảm bảo rằng id được truyền vào đúng dạng
-
   const {
     register,
     handleSubmit,
@@ -25,13 +24,12 @@ const EditProduct = () => {
     queryFn: () => getProduct(id as unknown as number),
     enabled: id !== undefined,
   });
-
   useEffect(() => {
     if (data) {
-      setValue("name", data.name);
-      setValue("imgUrl", data.imgUrl);
-      setValue("price", data.price);
-      setValue("description", data.description);
+      setValue("name", data.data.name);
+      setValue("imgUrl", data.data.image);
+      setValue("price", data.data.price);
+      setValue("description", data.data.description);
     }
   }, [data, setValue]);
 
